@@ -6,8 +6,10 @@
   "main": "lib/middleware.cjs.js",
   "module": "lib/middleware.es.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "commitmsg": "validate-commit-msg"
+    "lint:js": "eslint .",
+    "test": "run-s lint:*",
+    "commitmsg": "validate-commit-msg",
+    "precommit": "npm test"
   },
   "repository": {
     "type": "git",
@@ -25,8 +27,11 @@
   },
   "homepage": "https://github.com/travi/redux-fetch-middleware#readme",
   "devDependencies": {
+    "@travi/eslint-config-travi": "0.3.0",
     "cz-conventional-changelog": "1.2.0",
+    "eslint": "3.10.2",
     "husky": "0.11.9",
+    "npm-run-all": "3.1.1",
     "validate-commit-msg": "2.8.2"
   },
   "config": {
