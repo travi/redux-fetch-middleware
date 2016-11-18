@@ -1,0 +1,26 @@
+{
+  "name": "@travi/redux-fetch-middleware",
+  "license": "MIT",
+  "description": "redux middleware to enable async data fetching as the result of a dispatched action",
+  "version": "0.1.0",
+  "main": "lib/middleware.cjs.js",
+  "module": "lib/middleware.es.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/travi/redux-fetch-middleware.git"
+  },
+  "keywords": [
+    "redux",
+    "middleware",
+    "fetch",
+    "async"
+  ],
+  "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
+  "bugs": {
+    "url": "https://github.com/travi/redux-fetch-middleware/issues"
+  },
+  "homepage": "https://github.com/travi/redux-fetch-middleware#readme"
+}
