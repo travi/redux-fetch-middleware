@@ -10,7 +10,7 @@ export default {
         })
     ],
     targets: [
-        {dest: 'lib/middleware.cjs.js', format: 'cjs'},
+        {dest: 'lib/middleware.cjs.js', format: 'cjs', exports: 'named'},
         {dest: 'lib/middleware.es.js', format: 'es'}
     ]
 };
