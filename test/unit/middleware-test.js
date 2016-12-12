@@ -1,20 +1,30 @@
-import middleware from '../../src/middleware';
+import middlewareFactory from '../../src/middleware';
 import * as iocContainer from '@travi/ioc';
 import any from '@travi/any';
 import sinon from 'sinon';
 import {assert} from 'chai';
+import {isEmpty, isObject} from 'lodash';
 
 suite('fetch middleware', () => {
     let sandbox, fetch;
     const
         action = any.simpleObject(),
         initiate = any.string(),
+        sessionData = any.simpleObject(),
         fetcher = any.simpleObject(),
         error = any.word();
 
+    function fetcherFactory(session) {
+        if (sessionData === session || isObject(session) && isEmpty(session)) {
+            return fetcher;
+        }
+
+        return undefined;
+    }
+
     setup(() => {
         sandbox = sinon.sandbox.create();
-        sandbox.stub(iocContainer, 'use');
+        sandbox.stub(iocContainer, 'use').withArgs('fetcher-factory').returns(fetcherFactory);
 
         fetch = sinon.stub();
     });
@@ -29,7 +39,7 @@ suite('fetch middleware', () => {
             next = sinon.stub();
         next.withArgs(action).returns(nextResult);
 
-        assert.equal(middleware({})(next)(action), nextResult);
+        assert.equal(middlewareFactory()({})(next)(action), nextResult);
     });
 
     test('that dispatch is called with the `initiate` topic', () => {
@@ -38,7 +48,7 @@ suite('fetch middleware', () => {
             dispatch = sinon.stub();
         fetch.resolves();
 
-        return middleware({dispatch})()({...action, data, fetch, initiate}).then(() => {
+        return middlewareFactory(sessionData)({dispatch})()({...action, data, fetch, initiate}).then(() => {
             assert.calledWith(dispatch, {type: initiate, ...data});
         });
     });
@@ -47,7 +57,7 @@ suite('fetch middleware', () => {
         const dispatch = sinon.stub();
         fetch.rejects();
 
-        return middleware({dispatch})()({...action, fetch, initiate}).catch(() => {
+        return middlewareFactory()({dispatch})()({...action, fetch, initiate}).catch(() => {
             assert.calledWith(dispatch, {type: initiate});
         });
     });
@@ -57,22 +67,21 @@ suite('fetch middleware', () => {
             dispatch = sinon.stub(),
             success = any.string(),
             response = any.simpleObject();
-        iocContainer.use.withArgs('fetcher').returns(fetcher);
         fetch.withArgs(fetcher).resolves(response);
 
-        return middleware({dispatch})()({...action, fetch, initiate, success}).then(() => {
+        return middlewareFactory()({dispatch})()({...action, fetch, initiate, success}).then(() => {
             assert.calledWith(dispatch, {type: success, resource: response});
         });
     });
 
     test('that the `failure` topic is dispatched upon a failed fetch', () => {
-        iocContainer.use.withArgs('fetcher').returns(fetcher);
+        iocContainer.use.withArgs('fetcher').returns(fetcherFactory);
         fetch.withArgs(fetcher).rejects(error);
         const
             dispatch = sinon.stub(),
             failure = any.string(),
 
-            promise = middleware({dispatch})()({...action, fetch, initiate, failure});
+            promise = middlewareFactory()({dispatch})()({...action, fetch, initiate, failure});
 
         return Promise.all([
             assert.isRejected(promise, new RegExp(error)),

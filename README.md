@@ -13,3 +13,36 @@ middleware to enable async data fetching as the result of a dispatched action
 ```
 $ npm install @travi/redux-fetch-middleware -S
 ```
+
+## Usage
+
+### Add the middleware to your redux store
+
+```js
+createStore(combineReducers(), applyMiddleware(fetchMiddlewareFactory(session)));
+```
+
+### Make the session data available to your fetch methods
+
+```js
+export default function fetcherFactory(session) {
+  const authToken = session.auth.token;
+
+  return {
+    async fetchFoo() {
+      return await getFoo(authToken);
+    },
+    async fetchBar() {
+      return await getBar(authToken);
+    }
+  };
+}
+```
+
+### Register your data-fetcher factory with [`@travi/ioc`](https://github.com/travi/ioc)
+
+This enables you to register different data-fetchers in different contexts, server vs browser
+
+```js
+add('fetcher-factory', fetcherFactory);
+```
