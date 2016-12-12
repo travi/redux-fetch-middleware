@@ -2,11 +2,12 @@
 
 middleware to enable async data fetching as the result of a dispatched action
 
-[![Build Status](https://img.shields.io/travis/travi/redux-fetch-middleware.svg?style=flat)](https://travis-ci.org/travi/redux-fetch-middleware)
-
 [![npm](https://img.shields.io/npm/v/@travi/redux-fetch-middleware.svg?maxAge=2592000)](https://www.npmjs.com/package/@travi/redux-fetch-middleware)
 [![license](https://img.shields.io/github/license/travi/redux-fetch-middleware.svg)](LICENSE)
+[![Build Status](https://img.shields.io/travis/travi/redux-fetch-middleware.svg?style=flat)](https://travis-ci.org/travi/redux-fetch-middleware)
+
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 ## Installation
 

@@ -1,9 +1,8 @@
 language: node_js
-deploy:
-  provider: npm
-  email: npm@travi.org
-  api_key:
-    secure: Uj7fqC5HobHNzXALSwymHUq+fFa7UsAHjaBvoAMx5I5dUNcdOk5fHHJAA94zU6FhtEvcrB+Vvl4DgH+n3Vs59PfzJ87c8S1afwyL17gYqRauhmGG8mH0e0ORO1KLxl2+cG7+hDKB7pS/bAlvUAWqHHB3iE7Q3eVveDdPX2riJ98kgeygyN1srMLRzZexeetkbtqF8KoYrldEZuagS0CPGfd7nxlt3FRqV2BgFp83wFug1yD89Vo6cMH/NmdhQ55GhytpfCtTFUfeRZvxJSJY0cBp/VH/aCKKY9x3WqFLnRS+fZNkXk+FN97RYu/umV1lVedKSyU1UK+v7e+epSO49AiSVa9GLPPgnfJbq3A78UPccPk5fBHnqsR7uD1AKx6YsvhfmuBY1m+sAxKhJU0soPsS989WWPTQGRysVBhHkKUSYgurBybDds3u7qEEByWJYqqEdaAnl3FEsuhUTauCUCWkWECFr6pDax0HeaemPHuyGauU4qb1d6flumRmDEfS2mfJdz41pPtPCRVbVlhwTczJ/wmqbaMGsJdeWqjAIjDPKAQZ9h/LSn+2UbSq0ltYeL+uj8nLOsnW3+w0d+yf2jqkFhbIAH32IauZcKS8t3IhvYozbYdZC02/l1fJhbI3p5nNAxvosL1o53X/d4ZAThsGUORqEICm1dZNRlVjlOU=
-  on:
-    tags: true
-    repo: travi/redux-fetch-middleware
+after_success: npm run semantic-release
+branches:
+  except:
+  - "/^v\\d+\\.\\d+\\.\\d+$/"
+env:
+  global:
+    secure: JE/D40zok+1uwsA8wrMqmvZtddzciShNDhJui5t1QS0z85g1wFOuwhpYNkkcCoAm/b/Q7VBdJX9Cd16SNESpArfQOI56J32HwfpkZ4VBvN3kGN9UBjQdWzHtvA13O5GT7t9fHbEB/nac/f7FhrgD+i/BYAM2kawIAC8K1dkXCzv8z65BxZIzJihyumFbTQoxk9N7tHNZZ/qAeVF0EQ4x0ic5+wRzbQP3q05329yGCAJ5CBuOEPFE2f7PiZZOeVgJAK/8d/+Qbz2E9rTVFXbtf230LgrJ+1fFIXHuT6Fo2FlReF0W3CUN/8xWPCRNFDFoC2lljFwkL4DrH7xcTmB9wlJIvr5SVZYz6eBSo+4i6Oq1zoFgB/mib56prP1tcUm7lraz8u9Q1d6f4vUSLj8jyz6+RdPwxIwaaCV5qZdZL3OQc1XmVmq5vjb5ea1CbnvWNURpCi2KFIcc00SIzREBfPnaenF+oKHCVyf8gn5MzQH4E1kYdwBHRz4kofdulWsIHMlTNSmtwSmFwVu9L5vgJM8C8/en9VcJ42bgr4fk9dy22pyLd8JcxRRv0wn8pJrC9+0MHa0Nj9tdtKnvc80JNNidGNbrHvbdjCAl2MXfU6yz51MKW/cM9s9Ii8DlKs98M6bJx3t2zkMF2u1UdBNPWaW+4HzGMbChpDgZOOqcfko=

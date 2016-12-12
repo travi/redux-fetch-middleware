@@ -2,7 +2,11 @@
   "name": "@travi/redux-fetch-middleware",
   "license": "MIT",
   "description": "redux middleware to enable async data fetching as the result of a dispatched action",
-  "version": "0.1.0",
+  "version": "0.0.0-semantically-released",
+  "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
+  "repository": "travi/redux-fetch-middleware",
+  "bugs": "https://github.com/travi/redux-fetch-middleware/issues",
+  "homepage": "https://github.com/travi/redux-fetch-middleware#readme",
   "main": "lib/middleware.cjs.js",
   "module": "lib/middleware.es.js",
   "scripts": {
@@ -14,11 +18,8 @@
     "prepublish": "npm run build",
     "commitmsg": "validate-commit-msg",
     "precommit": "npm test",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "postpublish": "greenkeeper-postpublish"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/travi/redux-fetch-middleware.git"
   },
   "keywords": [
     "redux",
@@ -26,11 +27,6 @@
     "fetch",
     "async"
   ],
-  "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
-  "bugs": {
-    "url": "https://github.com/travi/redux-fetch-middleware/issues"
-  },
-  "homepage": "https://github.com/travi/redux-fetch-middleware#readme",
   "devDependencies": {
     "@travi/any": "0.8.0",
     "@travi/eslint-config-travi": "0.3.0",
@@ -50,12 +46,13 @@
     "npm-run-all": "3.1.2",
     "rollup": "0.37.0",
     "rollup-plugin-babel": "2.7.0",
+    "semantic-release": "6.3.2",
     "sinon": "1.17.6",
     "sinon-as-promised": "4.0.2",
     "validate-commit-msg": "2.8.2"
   },
   "peerDependencies": {
-    "@travi/ioc": "^0.1.1"
+    "@travi/ioc": "^1.0.0"
   },
   "config": {
     "commitizen": {
