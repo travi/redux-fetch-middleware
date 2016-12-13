@@ -25,8 +25,10 @@ createStore(combineReducers(), applyMiddleware(fetchMiddlewareFactory(session)))
 
 ### Make the session data available to your fetch methods
 
+Be sure to export a `createFetcher` _named_ function that takes a `session` object
+
 ```js
-export default function fetcherFactory(session) {
+export function createFetcher(session) {
   const authToken = session.auth.token;
 
   return {

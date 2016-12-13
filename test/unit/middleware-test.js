@@ -12,15 +12,16 @@ suite('fetch middleware', () => {
         initiate = any.string(),
         sessionData = any.simpleObject(),
         fetcher = any.simpleObject(),
-        error = any.word();
+        error = any.word(),
+        fetcherFactory = {
+            createFetcher(session) {
+                if (sessionData === session || isObject(session) && isEmpty(session)) {
+                    return fetcher;
+                }
 
-    function fetcherFactory(session) {
-        if (sessionData === session || isObject(session) && isEmpty(session)) {
-            return fetcher;
-        }
-
-        return undefined;
-    }
+                return undefined;
+            }
+        };
 
     setup(() => {
         sandbox = sinon.sandbox.create();

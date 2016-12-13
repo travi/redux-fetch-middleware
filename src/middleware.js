@@ -2,7 +2,7 @@ import {use} from '@travi/ioc';
 
 export default (session = {}) => ({dispatch}) => (next) => (action) => {
     const
-        fetcher = use('fetcher-factory')(session),
+        fetcher = use('fetcher-factory').createFetcher(session),
         {fetch, initiate, success, failure, data} = action;
 
     if (!fetch) {
