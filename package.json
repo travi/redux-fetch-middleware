@@ -11,6 +11,7 @@
   "module": "lib/middleware.es.js",
   "scripts": {
     "lint:js": "eslint .",
+    "lint:md": "markdownlint *.md",
     "tests:unit": "mocha --recursive test/unit/",
     "test": "run-s lint:* tests:*",
     "build": "rollup -c",
@@ -42,6 +43,7 @@
     "greenkeeper-postpublish": "1.0.1",
     "husky": "0.12.0",
     "lodash": "4.17.2",
+    "markdownlint-cli": "0.2.0",
     "mocha": "3.2.0",
     "npm-run-all": "3.1.2",
     "rollup": "0.37.0",

@@ -11,7 +11,7 @@ middleware to enable async data fetching as the result of a dispatched action
 
 ## Installation
 
-```
+```bash
 $ npm install @travi/redux-fetch-middleware -S
 ```
 
@@ -19,7 +19,7 @@ $ npm install @travi/redux-fetch-middleware -S
 
 ### Include as a middleware for redux
 
-#### As a [single middleware](http://redux.js.org/docs/api/applyMiddleware.html):
+#### As a [single middleware](http://redux.js.org/docs/api/applyMiddleware.html)
 
 ```js
 import {createStore, applyMiddleware} from 'redux';
@@ -31,7 +31,7 @@ export default function ({session}) {
 }
 ```
 
-#### With [additional middlewares](http://redux.js.org/docs/api/compose.html):
+#### With [additional middlewares](http://redux.js.org/docs/api/compose.html)
 
 ```js
 import {createStore, applyMiddleware, compose} from 'redux';
@@ -67,15 +67,19 @@ export function createFetcher(session) {
 
 Dispatch an action that does not define `type`, but instead contains:
 
-* `fetch`: a function that takes a reference to the client module to give access to the methods that
-  do the actual data fetching
-* `initial`: the action type that should be dispatched when the data fetch is initiated
-* `success`: the action type that should be dispatched when the data has been successfully received.
-  the received resource will be passed in the `resource` attribute of this action.
-* `failure`: the action type that should be dispatched when the fetch results in an error. the resulting
-  error will be passed as the `error` attribute of this action.
+* `fetch`: a function that takes a reference to the client module to give
+  access to the methods that do the actual data fetching
+* `initial`: the action type that should be dispatched when the data fetch
+  is initiated
+* `success`: the action type that should be dispatched when the data has
+  been successfully received. the received resource will be passed in the
+  `resource` attribute of this action.
+* `failure`: the action type that should be dispatched when the fetch result
+  in an error. the resulting error will be passed as the `error` attribute of
+  this action.
 
-#### As an action creator:
+#### As an action creator
+
 ```js
 export function loadFoo(id) {
     return {
@@ -87,7 +91,8 @@ export function loadFoo(id) {
 }
 ```
 
-#### A corresponding reducer:
+#### A corresponding reducer
+
 ```js
 export default function reducer(state, action) {
     switch (action.type) {
@@ -105,7 +110,8 @@ export default function reducer(state, action) {
 
 ### Register your data-fetcher factory with [`@travi/ioc`](https://github.com/travi/ioc)
 
-This enables you to register different data-fetchers in different contexts, server vs browser
+This enables you to register different data-fetchers in different contexts,
+server vs browser
 
 ```js
 register('fetcher-factory', fetcherFactory);
