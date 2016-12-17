@@ -11,7 +11,7 @@
   "module": "lib/middleware.es.js",
   "scripts": {
     "lint:js": "eslint .",
-    "lint:md": "markdownlint *.md",
+    "lint:md": "globstar --node -- markdownlint **/*.md",
     "tests:unit": "mocha --recursive test/unit/",
     "test": "run-s lint:* tests:*",
     "build": "rollup -c",
@@ -40,6 +40,7 @@
     "chai-as-promised": "6.0.0",
     "cz-conventional-changelog": "1.2.0",
     "eslint": "3.17.1",
+    "globstar": "1.0.0",
     "greenkeeper-postpublish": "1.0.1",
     "husky": "0.13.2",
     "lodash": "4.17.4",
