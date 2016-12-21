@@ -46,7 +46,7 @@
     "markdownlint-cli": "0.2.0",
     "mocha": "3.2.0",
     "npm-run-all": "3.1.2",
-    "rollup": "0.37.0",
+    "rollup": "0.37.1",
     "rollup-plugin-babel": "2.7.1",
     "semantic-release": "6.3.2",
     "sinon": "1.17.6",
