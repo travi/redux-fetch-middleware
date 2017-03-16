@@ -11,7 +11,7 @@ suite('fetch middleware', () => {
   const initiate = any.string();
   const sessionData = any.simpleObject();
   const fetcher = any.simpleObject();
-  const error = any.word();
+  const errorMsg = any.word();
   const fetcherFactory = {
     createFetcher(session) {
       if (sessionData === session || (isObject(session) && isEmpty(session))) {
@@ -72,6 +72,7 @@ suite('fetch middleware', () => {
   });
 
   test('that the `failure` topic is dispatched upon a failed fetch', () => {
+    const error = new Error(errorMsg);
     iocContainer.use.withArgs('fetcher').returns(fetcherFactory);
     fetch.withArgs(fetcher).rejects(error);
     const dispatch = sinon.stub();
@@ -80,9 +81,9 @@ suite('fetch middleware', () => {
     const promise = middlewareFactory()({dispatch})()({...action, fetch, initiate, failure});
 
     return Promise.all([
-      assert.isRejected(promise, new RegExp(error)),
+      assert.isRejected(promise, error, errorMsg),
       promise.catch(() => {
-        assert.calledWith(dispatch, {type: failure, error: new Error(error)});
+        assert.calledWith(dispatch, {type: failure, error});
       })
     ]);
   });
