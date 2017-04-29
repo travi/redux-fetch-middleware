@@ -29,7 +29,7 @@
     "async"
   ],
   "devDependencies": {
-    "@travi/any": "1.0.5",
+    "@travi/any": "1.0.6",
     "@travi/eslint-config-travi": "1.2.2",
     "@travi/ioc": "1.0.0",
     "babel-cli": "6.24.1",
