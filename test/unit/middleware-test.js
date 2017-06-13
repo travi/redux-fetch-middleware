@@ -64,26 +64,28 @@ suite('fetch middleware', () => {
     const dispatch = sinon.stub();
     const success = any.string();
     const response = any.simpleObject();
+    const data = any.simpleObject();
     fetch.withArgs(fetcher).resolves(response);
 
-    return middlewareFactory()({dispatch})()({...action, fetch, initiate, success}).then(() => {
-      assert.calledWith(dispatch, {type: success, resource: response});
+    return middlewareFactory()({dispatch})()({...action, fetch, initiate, success, data}).then(() => {
+      assert.calledWith(dispatch, {type: success, resource: response, ...data});
     });
   });
 
   test('that the `failure` topic is dispatched upon a failed fetch', () => {
     const error = new Error(errorMsg);
+    const data = any.simpleObject();
     iocContainer.use.withArgs('fetcher').returns(fetcherFactory);
     fetch.withArgs(fetcher).rejects(error);
     const dispatch = sinon.stub();
     const failure = any.string();
 
-    const promise = middlewareFactory()({dispatch})()({...action, fetch, initiate, failure});
+    const promise = middlewareFactory()({dispatch})()({...action, fetch, initiate, failure, data});
 
     return Promise.all([
       assert.isRejected(promise, error, errorMsg),
       promise.catch(() => {
-        assert.calledWith(dispatch, {type: failure, error});
+        assert.calledWith(dispatch, {type: failure, error, ...data});
       })
     ]);
   });

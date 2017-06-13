@@ -77,6 +77,8 @@ Dispatch an action that does not define `type`, but instead contains:
 * `failure`: the action type that should be dispatched when the fetch result
   in an error. the resulting error will be passed as the `error` attribute of
   this action.
+* `data`: the data that you would like access to in your dispatched methods.
+  the resulting data will be passed as base level attributes to the `resource`.
 
 #### As an action creator
 
@@ -86,7 +88,8 @@ export function loadFoo(id) {
         fetch: (client) => client.getFoo(id),
         initiate: LOAD_FOO,
         success: FOO_LOADED,
-        failure: FOO_LOAD_FAILED
+        failure: FOO_LOAD_FAILED,
+        data: {id, foo:'bar'}
     };
 }
 ```
