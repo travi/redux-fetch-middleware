@@ -44,7 +44,7 @@
     "husky": "0.14.3",
     "lodash": "4.17.4",
     "markdownlint-cli": "0.3.0",
-    "mocha": "3.4.2",
+    "mocha": "3.5.0",
     "npm-run-all": "4.0.2",
     "rollup": "0.45.2",
     "rollup-plugin-babel": "2.7.1",
