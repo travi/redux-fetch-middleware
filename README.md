@@ -1,5 +1,7 @@
 # redux-fetch-middleware
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/travi/redux-fetch-middleware.svg)](https://greenkeeper.io/)
+
 middleware to enable async data fetching as the result of a dispatched action
 
 [![npm](https://img.shields.io/npm/v/@travi/redux-fetch-middleware.svg?maxAge=2592000)](https://www.npmjs.com/package/@travi/redux-fetch-middleware)
