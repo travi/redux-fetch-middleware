@@ -17,7 +17,7 @@
     "build": "rollup -c",
     "preversion": "npm test",
     "prepublish": "npm run build",
-    "commitmsg": "validate-commit-msg",
+    "commitmsg": "commitlint -e",
     "precommit": "npm test",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
@@ -37,6 +37,7 @@
     "babel-preset-stage-2": "6.24.1",
     "chai": "4.1.1",
     "chai-as-promised": "7.1.1",
+    "commitlint-config-travi": "1.0.0",
     "cz-conventional-changelog": "2.0.0",
     "globstar": "1.0.0",
     "husky": "0.14.3",
@@ -47,8 +48,7 @@
     "rollup": "0.47.5",
     "rollup-plugin-babel": "3.0.2",
     "semantic-release": "7.0.1",
-    "sinon": "3.2.0",
-    "validate-commit-msg": "2.14.0"
+    "sinon": "3.2.0"
   },
   "peerDependencies": {
     "@travi/ioc": "^1.0.0"
