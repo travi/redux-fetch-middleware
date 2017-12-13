@@ -29,7 +29,7 @@
   ],
   "devDependencies": {
     "@travi/any": "1.6.0",
-    "@travi/eslint-config-travi": "1.5.27",
+    "@travi/eslint-config-travi": "1.5.28",
     "@travi/ioc": "1.0.0",
     "babel-cli": "6.26.0",
     "babel-preset-es2015-node": "6.1.1",
