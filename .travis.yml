@@ -1,7 +1,9 @@
 language: node_js
 notifications:
   email: false
-before_script: npm run greenkeeper:update-lockfile
+before_script:
+- npm run greenkeeper:update-lockfile
+- npm ls >/dev/null
 after_script: npm run greenkeeper:upload-lockfile
 deploy:
   provider: script
