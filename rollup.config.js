@@ -1,7 +1,7 @@
 import babel from 'rollup-plugin-babel';
 
 export default {
-  entry: 'src/middleware.js',
+  input: 'src/middleware.js',
   plugins: [
     babel({
       babelrc: false,
@@ -9,8 +9,9 @@ export default {
       presets: ['es2015-rollup', 'stage-2']
     })
   ],
-  targets: [
-    {dest: 'lib/middleware.cjs.js', format: 'cjs', exports: 'named'},
-    {dest: 'lib/middleware.es.js', format: 'es'}
+  external: ['@travi/ioc'],
+  output: [
+    {file: 'lib/middleware.cjs.js', format: 'cjs', exports: 'named', sourcemap: true},
+    {file: 'lib/middleware.es.js', format: 'es', sourcemap: true}
   ]
 };
