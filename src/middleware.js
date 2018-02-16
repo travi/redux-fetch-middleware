@@ -12,8 +12,5 @@ export default (session = {}) => ({dispatch}) => next => action => {
 
   return fetch(fetcher)
     .then(response => dispatch({type: success, resource: response, ...data}))
-    .catch(err => {
-      dispatch({type: failure, error: err, ...data});
-      return Promise.reject(err);
-    });
+    .catch(err => dispatch({type: failure, error: err, ...data}));
 };
