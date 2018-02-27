@@ -13,7 +13,7 @@ middleware to enable async data fetching as the result of a dispatched action
 ## Installation
 
 ```bash
-$ npm install @travi/redux-fetch-middleware -S
+$ npm install @travi/redux-fetch-middleware --save
 ```
 
 ## Usage
@@ -80,6 +80,18 @@ Dispatch an action that does not define `type`, but instead contains:
   this action.
 * `data`: the data that you would like access to in your dispatched methods.
   the resulting data will be passed as base level attributes to the `resource`.
+* `retry` (_optional_): a predicate function that enables instructing the
+  middleware to retry (or poll) the fetch under certain conditions.
+  * The predicate function is expected to be implemented in error-first style,
+    meaning that the error will be provided as the first argument in the failure
+    scenario, and the response will be provided as the second argument in the
+    success scenario
+  * The predicate function should return a boolean to instruct the middleware
+    whether to repeat the call again or not
+  * When the function is not provided, the default will be the same as if the
+    predicate returned `false`, so the fetch will not be repeated by default
+  * When a retry is requested, the repeated request will be delayed by three
+    seconds
 
 #### As an action creator
 
@@ -87,6 +99,10 @@ Dispatch an action that does not define `type`, but instead contains:
 export function loadFoo(id) {
     return {
         fetch: (client) => client.getFoo(id),
+        retryPredicate: (err, response) => {
+          if (err) return true;
+          return (response && 'in-progress' === response['completion-status']);
+        },
         initiate: LOAD_FOO,
         success: FOO_LOADED,
         failure: FOO_LOAD_FAILED,

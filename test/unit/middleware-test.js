@@ -1,17 +1,20 @@
+import {seconds} from 'milliseconds';
 import * as iocContainer from '@travi/ioc';
 import any from '@travi/any';
 import sinon from 'sinon';
 import {assert} from 'chai';
 import {isEmpty, isObject} from 'lodash';
+import * as delay from '../../src/delay-wrapper';
 import middlewareFactory from '../../src/middleware';
 
 suite('fetch middleware', () => {
   let sandbox, fetch;
+  const data = any.simpleObject();
   const action = any.simpleObject();
   const initiate = any.string();
   const sessionData = any.simpleObject();
+  const dispatchedAction = any.simpleObject();
   const fetcher = any.simpleObject();
-  const errorMsg = any.word();
   const fetcherFactory = {
     createFetcher(session) {
       if (sessionData === session || (isObject(session) && isEmpty(session))) {
@@ -24,7 +27,12 @@ suite('fetch middleware', () => {
 
   setup(() => {
     sandbox = sinon.sandbox.create();
-    sandbox.stub(iocContainer, 'use').withArgs('fetcher-factory').returns(fetcherFactory);
+
+    sandbox.stub(iocContainer, 'use');
+    sandbox.stub(delay, 'default');
+
+    iocContainer.use.withArgs('fetcher-factory').returns(fetcherFactory);
+    delay.default.resolves();
 
     fetch = sinon.stub();
   });
@@ -42,7 +50,6 @@ suite('fetch middleware', () => {
   });
 
   test('that dispatch is called with the `initiate` topic', () => {
-    const data = any.simpleObject();
     const dispatch = sinon.stub();
     fetch.resolves();
 
@@ -60,28 +67,90 @@ suite('fetch middleware', () => {
     });
   });
 
-  test('that the `success` topic is dispatched upon a successful fetch', () => {
-    const dispatch = sinon.stub();
-    const success = any.string();
+  suite('success', () => {
     const response = any.simpleObject();
-    const data = any.simpleObject();
-    fetch.withArgs(fetcher).resolves(response);
+    const success = any.string();
 
-    return middlewareFactory()({dispatch})()({...action, fetch, initiate, success, data}).then(() => {
-      assert.calledWith(dispatch, {type: success, resource: response, ...data});
+    setup(() => fetch.withArgs(fetcher).resolves(response));
+
+    test('that the `success` topic is dispatched upon a successful fetch', () => {
+      const dispatch = sinon.stub();
+      dispatch.withArgs({type: success, resource: response, ...data}).resolves(dispatchedAction);
+
+      return assert.becomes(
+        middlewareFactory()({dispatch})()({...action, fetch, initiate, success, data}),
+        dispatchedAction
+      );
+    });
+
+    test('that the fetch is repeated if the `retry` predicate returns `true`', () => {
+      const retry = sinon.stub();
+      const detailedAction = {...action, fetch, initiate, data, retry};
+      const dispatch = sinon.stub();
+      retry.withArgs(null, response).returns(true);
+      dispatch.withArgs(detailedAction).resolves(dispatchedAction);
+
+      return assert.becomes(
+        middlewareFactory()({dispatch})()(detailedAction),
+        dispatchedAction
+      ).then(() => assert.calledWith(delay.default, seconds(3)));
+    });
+
+    test('that the fetch is not repeated if the `retry` predicate returns `false`', () => {
+      const dispatch = sinon.stub();
+      const retry = sinon.stub();
+      retry.withArgs(null, response).returns(false);
+      dispatch.withArgs({type: success, resource: response, ...data}).resolves(dispatchedAction);
+
+      return assert.becomes(
+        middlewareFactory()({dispatch})()({...action, fetch, initiate, success, data, retry}),
+        dispatchedAction
+      );
     });
   });
 
-  test('that the `failure` topic is dispatched upon a failed fetch', () => {
+  suite('failure', () => {
+    const errorMsg = any.word();
     const error = new Error(errorMsg);
-    const data = any.simpleObject();
-    iocContainer.use.withArgs('fetcher').returns(fetcherFactory);
-    fetch.withArgs(fetcher).rejects(error);
-    const dispatch = sinon.stub();
     const failure = any.string();
 
-    return middlewareFactory()({dispatch})()({...action, fetch, initiate, failure, data}).then(() => {
-      assert.calledWith(dispatch, {type: failure, error, ...data});
+    test('that the `failure` topic is dispatched upon a failed fetch', () => {
+      iocContainer.use.withArgs('fetcher').returns(fetcherFactory);
+      fetch.withArgs(fetcher).rejects(error);
+      const dispatch = sinon.stub();
+      dispatch.withArgs({type: failure, error, ...data}).resolves(dispatchedAction);
+
+      return assert.becomes(
+        middlewareFactory()({dispatch})()({...action, fetch, initiate, failure, data}),
+        dispatchedAction
+      );
+    });
+
+    test('that the fetch is repeated if the `retry` predicate returns `true`', () => {
+      const retry = sinon.stub();
+      const detailedAction = {...action, fetch, initiate, data, retry};
+      const dispatch = sinon.stub();
+      fetch.rejects(error);
+      retry.withArgs(error).returns(true);
+      dispatch.withArgs(detailedAction).resolves(dispatchedAction);
+
+      return assert.becomes(
+        middlewareFactory()({dispatch})()(detailedAction),
+        dispatchedAction
+      ).then(() => assert.calledWith(delay.default, seconds(3)));
+    });
+
+    test('that the fetch is not repeated if the `retry` predicate returns `false`', () => {
+      const dispatch = sinon.stub();
+      const retry = sinon.stub();
+      fetch.rejects(error);
+      retry.withArgs(error).returns(false);
+      dispatch.withArgs({type: failure, error, ...data}).resolves(dispatchedAction);
+
+      return assert.becomes(
+        middlewareFactory()({dispatch})()({...action, fetch, initiate, failure, data, retry}),
+        dispatchedAction
+      );
     });
   });
 });

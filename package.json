@@ -63,5 +63,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "delay": "2.0.0",
+    "milliseconds": "1.0.3"
   }
 }
