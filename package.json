@@ -65,7 +65,7 @@
     "access": "public"
   },
   "dependencies": {
-    "delay": "2.0.0",
-    "milliseconds": "1.0.3"
+    "milliseconds": "1.0.3",
+    "timeout-as-promise": "1.0.0"
   }
 }
