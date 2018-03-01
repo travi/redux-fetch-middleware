@@ -42,7 +42,7 @@
     "commitlint-config-travi": "1.2.28",
     "cz-conventional-changelog": "2.1.0",
     "globstar": "1.0.0",
-    "greenkeeper-lockfile": "1.13.3",
+    "greenkeeper-lockfile": "1.14.0",
     "husky": "0.15.0-rc.8",
     "lodash": "4.17.5",
     "markdownlint-cli": "0.7.1",
