@@ -6,7 +6,8 @@ export default {
     babel({
       babelrc: false,
       exclude: ['./node_modules/**'],
-      presets: ['es2015-rollup', 'stage-2']
+      presets: [['env', {targets: {node: 8, browsers: ['last 2 versions']}, modules: false}]],
+      plugins: [['transform-object-rest-spread', {useBuiltIns: true}]]
     })
   ],
   external: ['@travi/ioc'],
