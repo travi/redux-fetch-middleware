@@ -26,7 +26,7 @@ suite('fetch middleware', () => {
   };
 
   setup(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
 
     sandbox.stub(iocContainer, 'use');
     sandbox.stub(delay, 'default');
