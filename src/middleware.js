@@ -6,8 +6,8 @@ function repeatFetch(dispatch, action) {
   return delay(seconds(3)).then(() => dispatch(action));
 }
 
-export default (session = {}) => ({dispatch}) => next => action => {
-  const fetcher = use('fetcher-factory').createFetcher(session);
+export default (session = {}, server) => ({dispatch}) => next => action => {
+  const fetcher = use('fetcher-factory').createFetcher(session, server);
   const {fetch, initiate, success, failure, data, retry} = action;
 
   if (!fetch) {
