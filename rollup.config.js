@@ -10,7 +10,11 @@ export default {
       plugins: [['transform-object-rest-spread', {useBuiltIns: true}]]
     })
   ],
-  external: ['@travi/ioc'],
+  external: [
+    '@travi/ioc',
+    'milliseconds',
+    'timeout-as-promise'
+  ],
   output: [
     {file: 'lib/middleware.cjs.js', format: 'cjs', exports: 'named', sourcemap: true},
     {file: 'lib/middleware.es.js', format: 'es', sourcemap: true}
