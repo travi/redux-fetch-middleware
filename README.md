@@ -99,7 +99,7 @@ Dispatch an action that does not define `type`, but instead contains:
 export function loadFoo(id) {
     return {
         fetch: (client) => client.getFoo(id),
-        retryPredicate: (err, response) => {
+        retry: (err, response) => {
           if (err) return true;
           return (response && 'in-progress' === response['completion-status']);
         },
