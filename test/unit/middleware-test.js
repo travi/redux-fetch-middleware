@@ -13,6 +13,8 @@ suite('fetch middleware', () => {
   const initiate = any.string();
   const dispatchedAction = any.simpleObject();
   const fetcher = any.simpleObject();
+  const errorMsg = any.word();
+  const error = new Error(errorMsg);
 
   setup(() => {
     sandbox = sinon.createSandbox();
@@ -106,11 +108,21 @@ suite('fetch middleware', () => {
         dispatchedAction
       );
     });
+
+    test('that failure to process a successful response does not result in a retry', async () => {
+      const dispatch = sinon.stub();
+      const retry = sinon.stub();
+      retry.withArgs(error).returns(true);
+      dispatch.withArgs({type: success, resource: response, ...data}).throws(error);
+
+      return assert.isRejected(
+        middlewareFactory()({dispatch})()({...action, fetch, initiate, success, data, retry}),
+        error
+      );
+    });
   });
 
   suite('failure', () => {
-    const errorMsg = any.word();
-    const error = new Error(errorMsg);
     const failure = any.string();
 
     test('that the `failure` topic is dispatched upon a failed fetch', () => {

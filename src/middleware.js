@@ -17,14 +17,16 @@ export default (session = {}, server) => ({dispatch}) => next => action => {
   dispatch({type: initiate, ...data});
 
   return fetch(fetcher)
-    .then(response => {
-      if (retry && retry(null, response)) return repeatFetch(dispatch, action);
+    .then(
+      response => {
+        if (retry && retry(null, response)) return repeatFetch(dispatch, action);
 
-      return dispatch({type: success, resource: response, ...data});
-    })
-    .catch(err => {
-      if (retry && retry(err)) return repeatFetch(dispatch, action);
+        return dispatch({type: success, resource: response, ...data});
+      },
+      err => {
+        if (retry && retry(err)) return repeatFetch(dispatch, action);
 
-      return dispatch({type: failure, error: err, ...data});
-    });
+        return dispatch({type: failure, error: err, ...data});
+      }
+    );
 };
