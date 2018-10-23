@@ -19,11 +19,9 @@
     "test": "run-s lint:* tests:*",
     "build": "rollup -c",
     "preversion": "npm test",
-    "prepublish": "npm run build",
+    "prepack": "npm run build",
     "commitmsg": "commitlint -e",
-    "precommit": "npm test",
-    "greenkeeper:update-lockfile": "greenkeeper-lockfile-update",
-    "greenkeeper:upload-lockfile": "greenkeeper-lockfile-upload"
+    "precommit": "npm test"
   },
   "keywords": [
     "redux",
@@ -44,7 +42,6 @@
     "commitlint-config-travi": "1.2.31",
     "cz-conventional-changelog": "2.1.0",
     "globstar": "1.0.0",
-    "greenkeeper-lockfile": "1.15.1",
     "husky": "^1.0.0-rc.6",
     "markdownlint-cli": "0.13.0",
     "mocha": "5.2.0",
