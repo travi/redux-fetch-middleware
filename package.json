@@ -36,7 +36,7 @@
     "babel-cli": "6.26.0",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
     "babel-preset-env": "^1.7.0",
-    "babel-preset-travi": "^1.4.0",
+    "babel-preset-travi": "^1.4.2",
     "chai": "^4.2.0",
     "chai-as-promised": "7.1.1",
     "commitlint-config-travi": "1.2.31",
