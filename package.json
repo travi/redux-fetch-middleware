@@ -31,7 +31,7 @@
   ],
   "devDependencies": {
     "@travi/any": "2.0.2",
-    "@travi/eslint-config-travi": "1.8.1",
+    "@travi/eslint-config-travi": "1.8.2",
     "@travi/ioc": "1.1.1",
     "babel-cli": "6.26.0",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
