@@ -6,7 +6,7 @@ export default {
     babel({
       babelrc: false,
       exclude: ['./node_modules/**'],
-      presets: [['travi', {targets: {node: 8, browser: true}, modules: false}]]
+      presets: [['@travi', {targets: {node: 8, browser: true}, modules: false}]]
     })
   ],
   external: [
