@@ -8,7 +8,7 @@ function repeatFetch(dispatch, action) {
 
 export default (session = {}, server) => ({dispatch}) => next => action => {
   const fetcher = use('fetcher-factory').createFetcher(session, server);
-  const {fetch, initiate, success, failure, data, retry} = action;
+  const {fetch, initiate, success, progress, failure, data, retry} = action;
 
   if (!fetch) {
     return next(action);
@@ -19,7 +19,10 @@ export default (session = {}, server) => ({dispatch}) => next => action => {
   return fetch(fetcher)
     .then(
       response => {
-        if (retry && retry(null, response)) return repeatFetch(dispatch, action);
+        if (retry && retry(null, response)) {
+          dispatch({type: progress, resource: response, ...data});
+          return repeatFetch(dispatch, action);
+        }
 
         return dispatch({type: success, resource: response, ...data});
       },

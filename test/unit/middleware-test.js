@@ -68,6 +68,7 @@ suite('fetch middleware', () => {
   suite('success', () => {
     const response = any.simpleObject();
     const success = any.string();
+    const progress = any.string();
 
     setup(() => {
       fetcherFactory.withArgs({}).returns(fetcher);
@@ -95,6 +96,17 @@ suite('fetch middleware', () => {
         middlewareFactory()({dispatch})()(detailedAction),
         dispatchedAction
       ).then(() => assert.calledWith(delay.default, seconds(3)));
+    });
+
+    test('that the progress is reported if the `retry` predicate returns `true`', () => {
+      const retry = sinon.stub();
+      const detailedAction = {...action, fetch, initiate, data, retry, progress};
+      const dispatch = sinon.stub();
+      retry.withArgs(null, response).returns(true);
+      dispatch.withArgs(detailedAction).resolves(dispatchedAction);
+
+      return middlewareFactory()({dispatch})()(detailedAction)
+        .then(() => assert.calledWith(dispatch, {type: progress, resource: response, ...data}));
     });
 
     test('that the fetch is not repeated if the `retry` predicate returns `false`', () => {
