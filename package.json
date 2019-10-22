@@ -4,6 +4,9 @@
   "description": "redux middleware to enable async data fetching as the result of a dispatched action",
   "version": "0.0.0-semantically-released",
   "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
+  "contributors": [
+    "Trevor Richardson <npm@trevorrichardson.me> (https://trevorrichardson.me)"
+  ],
   "repository": "travi/redux-fetch-middleware",
   "bugs": "https://github.com/travi/redux-fetch-middleware/issues",
   "homepage": "https://github.com/travi/redux-fetch-middleware#readme",
