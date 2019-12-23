@@ -2,7 +2,7 @@
 
 middleware to enable async data fetching as the result of a dispatched action
 
-[![Build Status](https://img.shields.io/travis/travi/redux-fetch-middleware.svg?style=flat)](https://travis-ci.org/travi/redux-fetch-middleware)
+[![Build Status](https://img.shields.io/travis/com/travi/redux-fetch-middleware.svg?style=flat)](https://travis-ci.com/travi/redux-fetch-middleware)
 
 ## Usage
 
