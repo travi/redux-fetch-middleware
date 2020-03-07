@@ -23,9 +23,7 @@
     "test": "run-s lint:* tests:*",
     "build": "rollup -c",
     "preversion": "npm test",
-    "prepack": "npm run build",
-    "commitmsg": "commitlint -e",
-    "precommit": "npm test"
+    "prepack": "npm run build"
   },
   "keywords": [
     "redux",
