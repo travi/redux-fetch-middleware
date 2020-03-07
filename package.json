@@ -18,6 +18,7 @@
   "scripts": {
     "lint:js": "eslint .",
     "lint:md": "globstar --node -- markdownlint **/*.md",
+    "lint:peer": "npm ls >/dev/null",
     "tests:unit": "mocha --recursive test/unit/",
     "test": "run-s lint:* tests:*",
     "build": "rollup -c",
