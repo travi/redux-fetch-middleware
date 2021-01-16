@@ -35,7 +35,7 @@
     "@babel/register": "7.12.10",
     "@travi/any": "2.0.15",
     "@travi/babel-preset": "3.0.38",
-    "@travi/eslint-config": "1.0.58",
+    "@travi/eslint-config": "1.0.59",
     "@travi/eslint-config-mocha": "1.0.8",
     "@travi/ioc": "1.1.1",
     "chai": "4.2.0",
