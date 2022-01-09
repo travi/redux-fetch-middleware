@@ -40,7 +40,7 @@
     "@travi/ioc": "1.1.1",
     "chai": "4.3.4",
     "chai-as-promised": "7.1.1",
-    "commitlint-config-travi": "1.4.5",
+    "commitlint-config-travi": "1.4.6",
     "cz-conventional-changelog": "3.3.0",
     "globstar": "1.0.0",
     "husky": "7.0.4",
