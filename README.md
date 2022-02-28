@@ -52,7 +52,8 @@ export default function ({session}) {
 
 ### Make the session data available to your fetch methods
 
-Be sure to export a `createFetcher` _named_ function that takes a `session` object
+Be sure to export a `createFetcher` _named_ function that takes a `session`
+object
 
 ```js
 export function createFetcher(session) {

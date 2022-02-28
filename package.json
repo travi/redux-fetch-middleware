@@ -17,11 +17,12 @@
   },
   "scripts": {
     "lint:js": "eslint .",
-    "lint:md": "globstar --node -- markdownlint **/*.md",
+    "lint:md": "remark . --frail",
     "lint:peer": "npm ls >/dev/null",
     "tests:unit": "mocha --recursive test/unit/",
     "test": "run-s lint:* tests:*",
     "build": "rollup -c",
+    "generate:md": "remark . --output",
     "preversion": "npm test",
     "prepack": "npm run build"
   },
@@ -44,9 +45,11 @@
     "cz-conventional-changelog": "3.3.0",
     "globstar": "1.0.0",
     "husky": "7.0.4",
-    "markdownlint-cli": "0.31.1",
     "mocha": "9.2.1",
     "npm-run-all": "4.1.5",
+    "remark-cli": "10.0.1",
+    "remark-preset-lint-travi": "2.0.9",
+    "remark-toc": "8.0.1",
     "rollup": "2.68.0",
     "rollup-plugin-babel": "4.4.0",
     "sinon": "13.0.1"
