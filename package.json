@@ -50,7 +50,7 @@
     "remark-cli": "10.0.1",
     "remark-preset-lint-travi": "4.0.0",
     "remark-toc": "8.0.1",
-    "rollup": "2.75.4",
+    "rollup": "2.75.5",
     "rollup-plugin-babel": "4.4.0",
     "sinon": "14.0.0"
   },
