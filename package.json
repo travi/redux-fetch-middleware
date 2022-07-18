@@ -33,7 +33,7 @@
     "async"
   ],
   "devDependencies": {
-    "@babel/register": "7.18.6",
+    "@babel/register": "7.18.9",
     "@travi/any": "2.1.5",
     "@travi/babel-preset": "3.0.89",
     "@travi/eslint-config": "1.0.86",
