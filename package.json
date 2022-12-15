@@ -52,7 +52,7 @@
     "remark-toc": "8.0.1",
     "rollup": "3.7.4",
     "rollup-plugin-babel": "4.4.0",
-    "sinon": "15.0.0"
+    "sinon": "15.0.1"
   },
   "peerDependencies": {
     "@travi/ioc": "^1.0.0"
