@@ -19,25 +19,34 @@
     "fetch",
     "async"
   ],
-  "main": "lib/middleware.cjs.js",
-  "module": "lib/middleware.es.js",
+  "main": "./lib/middleware.js",
+  "module": "./lib/middleware.mjs",
+  "exports": {
+    "require": "./lib/middleware.js",
+    "import": "./lib/middleware.mjs"
+  },
   "scripts": {
+    "clean": "rimraf ./lib/",
     "lint:js": "eslint .",
     "lint:md": "remark . --frail",
     "lint:peer": "npm ls >/dev/null",
     "test:unit": "mocha --recursive test/unit/",
+    "pretest": "run-s build",
     "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
-    "build": "rollup -c",
+    "prebuild": "run-s clean",
+    "build": "rollup --config",
     "generate:md": "remark . --output",
     "preversion": "npm test",
     "prepack": "npm run build",
     "prepare": "husky install",
-    "lint:engines": "ls-engines"
+    "lint:engines": "ls-engines",
+    "lint:publish": "publint --strict"
   },
   "publishConfig": {
     "access": "public",
     "provenance": true
   },
+  "files": ["lib/"],
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
@@ -64,6 +73,7 @@
     "ls-engines": "0.9.0",
     "mocha": "10.2.0",
     "npm-run-all": "4.1.5",
+    "publint": "0.2.0",
     "remark-cli": "11.0.0",
     "remark-preset-lint-travi": "5.0.2",
     "remark-toc": "8.0.1",

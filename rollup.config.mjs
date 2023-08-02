@@ -15,7 +15,7 @@ export default {
     'timeout-as-promise'
   ],
   output: [
-    {file: 'lib/middleware.cjs.js', format: 'cjs', exports: 'named', sourcemap: true},
-    {file: 'lib/middleware.es.js', format: 'es', sourcemap: true}
+    {file: 'lib/middleware.js', format: 'cjs', exports: 'named', sourcemap: true},
+    {file: 'lib/middleware.mjs', format: 'esm', sourcemap: true}
   ]
 };
