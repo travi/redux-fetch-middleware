@@ -1,10 +1,10 @@
 {
   "name": "@travi/redux-fetch-middleware",
-  "license": "MIT",
   "description": "redux middleware to enable async data fetching as the result of a dispatched action",
+  "license": "MIT",
   "version": "0.0.0-semantically-released",
   "engines": {
-    "node": ">= 8"
+    "node": "^16.14 || >=18"
   },
   "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
   "contributors": [
@@ -13,27 +13,49 @@
   "repository": "travi/redux-fetch-middleware",
   "bugs": "https://github.com/travi/redux-fetch-middleware/issues",
   "homepage": "https://github.com/travi/redux-fetch-middleware#readme",
-  "main": "lib/middleware.cjs.js",
-  "module": "lib/middleware.es.js",
-  "scripts": {
-    "lint:js": "eslint .",
-    "lint:md": "remark . --frail",
-    "lint:peer": "npm ls >/dev/null",
-    "test:unit": "mocha --recursive test/unit/",
-    "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
-    "build": "rollup -c",
-    "generate:md": "remark . --output",
-    "preversion": "npm test",
-    "prepack": "npm run build",
-    "prepare": "husky install",
-    "lint:engines": "ls-engines"
-  },
   "keywords": [
     "redux",
     "middleware",
     "fetch",
     "async"
   ],
+  "main": "./lib/middleware.js",
+  "module": "./lib/middleware.mjs",
+  "exports": {
+    "require": "./lib/middleware.js",
+    "import": "./lib/middleware.mjs"
+  },
+  "scripts": {
+    "clean": "rimraf ./lib/",
+    "lint:js": "eslint .",
+    "lint:md": "remark . --frail",
+    "lint:peer": "npm ls >/dev/null",
+    "test:unit": "mocha --recursive test/unit/",
+    "pretest": "run-s build",
+    "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
+    "prebuild": "run-s clean",
+    "build": "rollup --config",
+    "generate:md": "remark . --output",
+    "preversion": "npm test",
+    "prepack": "npm run build",
+    "prepare": "husky install",
+    "lint:engines": "ls-engines",
+    "lint:publish": "publint --strict"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "files": ["lib/"],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "milliseconds": "1.0.3",
+    "timeout-as-promise": "1.0.0"
+  },
   "devDependencies": {
     "@babel/register": "7.22.5",
     "@rollup/plugin-babel": "6.0.3",
@@ -51,6 +73,7 @@
     "ls-engines": "0.9.0",
     "mocha": "10.2.0",
     "npm-run-all": "4.1.5",
+    "publint": "0.2.0",
     "remark-cli": "11.0.0",
     "remark-preset-lint-travi": "5.0.2",
     "remark-toc": "8.0.1",
@@ -59,18 +82,5 @@
   },
   "peerDependencies": {
     "@travi/ioc": "^1.0.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
-  },
-  "dependencies": {
-    "milliseconds": "1.0.3",
-    "timeout-as-promise": "1.0.0"
   }
 }
