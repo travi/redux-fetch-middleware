@@ -34,6 +34,7 @@
   ],
   "devDependencies": {
     "@babel/register": "7.22.5",
+    "@rollup/plugin-babel": "6.0.3",
     "@travi/any": "2.1.8",
     "@travi/babel-preset": "3.0.104",
     "@travi/eslint-config": "1.0.86",
@@ -51,7 +52,6 @@
     "remark-preset-lint-travi": "5.0.2",
     "remark-toc": "8.0.1",
     "rollup": "3.26.3",
-    "rollup-plugin-babel": "4.4.0",
     "sinon": "15.2.0"
   },
   "peerDependencies": {
