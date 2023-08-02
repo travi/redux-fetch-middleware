@@ -24,7 +24,8 @@
     "build": "rollup -c",
     "generate:md": "remark . --output",
     "preversion": "npm test",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "prepare": "husky install"
   },
   "keywords": [
     "redux",
