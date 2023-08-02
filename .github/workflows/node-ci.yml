@@ -30,7 +30,6 @@ jobs:
           cache: npm
           node-version: ${{ matrix.node }}
       - run: npm clean-install
-      - run: npm audit signatures
       - run: npm test
   verify:
     runs-on: ubuntu-latest
