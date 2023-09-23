@@ -46,7 +46,9 @@
     "access": "public",
     "provenance": true
   },
-  "files": ["lib/"],
+  "files": [
+    "lib/"
+  ],
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
@@ -74,8 +76,8 @@
     "mocha": "10.2.0",
     "npm-run-all2": "6.0.6",
     "publint": "0.2.2",
-    "remark-cli": "11.0.0",
-    "remark-preset-lint-travi": "6.0.1",
+    "remark-cli": "12.0.0",
+    "remark-preset-lint-travi": "6.0.2",
     "remark-toc": "9.0.0",
     "rollup": "3.29.2",
     "sinon": "16.0.0"
