@@ -79,7 +79,7 @@
     "remark-cli": "12.0.0",
     "remark-preset-lint-travi": "6.0.2",
     "remark-toc": "9.0.0",
-    "rollup": "3.29.2",
+    "rollup": "3.29.3",
     "sinon": "16.0.0"
   },
   "peerDependencies": {
