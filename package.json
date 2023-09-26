@@ -77,7 +77,7 @@
     "npm-run-all2": "6.0.6",
     "publint": "0.2.2",
     "remark-cli": "12.0.0",
-    "remark-preset-lint-travi": "6.0.2",
+    "remark-preset-lint-travi": "6.0.3",
     "remark-toc": "9.0.0",
     "rollup": "3.29.3",
     "sinon": "16.0.0"
