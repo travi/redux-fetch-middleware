@@ -62,7 +62,7 @@
     "@babel/register": "7.22.15",
     "@rollup/plugin-babel": "6.0.4",
     "@travi/any": "3.0.0",
-    "@travi/babel-preset": "3.0.112",
+    "@travi/babel-preset": "3.0.113",
     "@travi/eslint-config": "1.0.86",
     "@travi/eslint-config-mocha": "1.0.21",
     "@travi/ioc": "1.1.1",
