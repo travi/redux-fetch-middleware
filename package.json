@@ -75,7 +75,7 @@
     "ls-engines": "0.9.1",
     "mocha": "10.2.0",
     "npm-run-all2": "6.1.1",
-    "publint": "0.2.6",
+    "publint": "0.2.7",
     "remark-cli": "12.0.0",
     "remark-preset-lint-travi": "6.0.3",
     "remark-toc": "9.0.0",
