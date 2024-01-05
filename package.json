@@ -66,7 +66,7 @@
     "@travi/eslint-config": "1.0.86",
     "@travi/eslint-config-mocha": "1.0.21",
     "@travi/ioc": "1.1.1",
-    "chai": "4.3.10",
+    "chai": "4.4.0",
     "chai-as-promised": "7.1.1",
     "commitlint-config-travi": "1.4.45",
     "cz-conventional-changelog": "3.3.0",
