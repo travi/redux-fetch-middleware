@@ -74,7 +74,7 @@
     "husky": "9.0.11",
     "ls-engines": "0.9.1",
     "mocha": "10.4.0",
-    "npm-run-all2": "6.1.2",
+    "npm-run-all2": "6.2.0",
     "publint": "0.2.7",
     "remark-cli": "12.0.1",
     "remark-preset-lint-travi": "6.0.4",
