@@ -63,7 +63,7 @@
     "@rollup/plugin-babel": "6.0.4",
     "@travi/any": "3.1.2",
     "@travi/babel-preset": "3.0.130",
-    "@travi/eslint-config": "1.0.86",
+    "@travi/eslint-config": "5.0.8",
     "@travi/eslint-config-mocha": "1.0.25",
     "@travi/ioc": "1.1.1",
     "chai": "4.5.0",
