@@ -80,7 +80,7 @@
     "remark-preset-lint-travi": "6.0.8",
     "remark-toc": "9.0.0",
     "rollup": "4.37.0",
-    "sinon": "19.0.4"
+    "sinon": "19.0.5"
   },
   "peerDependencies": {
     "@travi/ioc": "^1.0.0"
