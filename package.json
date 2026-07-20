@@ -60,7 +60,7 @@
   },
   "devDependencies": {
     "@babel/register": "7.29.7",
-    "@rollup/plugin-babel": "7.0.0",
+    "@rollup/plugin-babel": "7.1.0",
     "@travi/any": "3.3.0",
     "@travi/babel-preset": "3.0.151",
     "@travi/eslint-config": "1.0.86",
