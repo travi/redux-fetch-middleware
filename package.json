@@ -59,7 +59,7 @@
     "timeout-as-promise": "1.0.0"
   },
   "devDependencies": {
-    "@babel/register": "7.29.7",
+    "@babel/register": "8.0.1",
     "@rollup/plugin-babel": "7.1.0",
     "@travi/any": "3.3.0",
     "@travi/babel-preset": "3.0.151",
